@@ -1,0 +1,81 @@
+◇ injected env (2) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+userRoutes: [Function: router] {
+  caseSensitive: undefined,
+  mergeParams: undefined,
+  params: {},
+  strict: undefined,
+  stack: [
+    Layer {
+      handle: [Function: handle],
+      keys: [],
+      name: 'handle',
+      params: undefined,
+      path: undefined,
+      slash: false,
+      matchers: [Array],
+      route: [Route]
+    },
+    Layer {
+      handle: [Function: handle],
+      keys: [],
+      name: 'handle',
+      params: undefined,
+      path: undefined,
+      slash: false,
+      matchers: [Array],
+      route: [Route]
+    }
+  ]
+}
+leaderboardRoutes: [Function: router] {
+  caseSensitive: undefined,
+  mergeParams: undefined,
+  params: {},
+  strict: undefined,
+  stack: [
+    Layer {
+      handle: [Function: handle],
+      keys: [],
+      name: 'handle',
+      params: undefined,
+      path: undefined,
+      slash: false,
+      matchers: [Array],
+      route: [Route]
+    },
+    Layer {
+      handle: [Function: handle],
+      keys: [],
+      name: 'handle',
+      params: undefined,
+      path: undefined,
+      slash: false,
+      matchers: [Array],
+      route: [Route]
+    },
+    Layer {
+      handle: [Function: handle],
+      keys: [],
+      name: 'handle',
+      params: undefined,
+      path: undefined,
+      slash: false,
+      matchers: [Array],
+      route: [Route]
+    },
+    Layer {
+      handle: [Function: handle],
+      keys: [],
+      name: 'handle',
+      params: undefined,
+      path: undefined,
+      slash: false,
+      matchers: [Array],
+      route: [Route]
+    }
+  ]
+}
+Trying to connect to MongoDB Atlas...
+MongoDB Atlas connection failed. Falling back to MongoMemoryServer... querySrv ECONNREFUSED _mongodb._tcp.freecluster.l6zf2pv.mongodb.net
+Connected to MongoMemoryServer for local testing.
+Server running on http://localhost:3001
