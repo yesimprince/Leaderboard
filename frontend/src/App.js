@@ -1,13 +1,5 @@
-import AddUser from "./components/AddUser";
-import Leaderboard from "./components/Leaderboard";
+import AppRoutes from "./routes/AppRoutes";
 
-function App() {
-  return (
-    <div>
-      <AddUser />
-      <Leaderboard />
-    </div>
-  );
+export default function App() {
+  return <AppRoutes />;
 }
-
-export default App;

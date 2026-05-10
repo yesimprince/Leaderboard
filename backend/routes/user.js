@@ -10,6 +10,9 @@ router.post("/add", async (req, res) => {
     res.json(user);
   } catch (error) {
     console.error("Error adding user:", error);
+    if (error.code === 11000) {
+      return res.status(400).json({ error: "Roll Number (Username) already registered!" });
+    }
     res.status(500).json({ error: "Failed to add user" });
   }
 });

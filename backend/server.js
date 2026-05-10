@@ -4,8 +4,10 @@ require("dotenv").config();
 const connectDB = require("./config/db");
 
 const app = express();
+
+// Allow all origins for Vercel deployments, or specify frontend URL
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -17,12 +19,8 @@ app.use(express.json());
 const userRoutes = require("./routes/user");
 const leaderboardRoutes = require("./routes/leaderboard");
 
-// DEBUG (very important for now)
-console.log("userRoutes:", userRoutes);
-console.log("leaderboardRoutes:", leaderboardRoutes);
-
 // use routes
-app.use("/api/users", require("./routes/user"));
+app.use("/api/users", userRoutes);
 app.use("/api/leaderboard", leaderboardRoutes);
 
 // test route
@@ -42,4 +40,11 @@ async function startServer() {
   }
 }
 
-startServer();
+// In Vercel, we export the app and connect to DB without app.listen
+if (process.env.VERCEL) {
+  connectDB();
+} else {
+  startServer();
+}
+
+module.exports = app;

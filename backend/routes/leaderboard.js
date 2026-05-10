@@ -5,6 +5,7 @@ const Score = require("../models/Score");
 const calculateScore = require("../utils/scoreCalculator");
 const getCodeforcesData = require("../services/codeforcesService");
 const getLeetCodeData = require("../services/leetcodeService");
+const getCodeChefData = require("../services/codechefService");
 
 // ----------------------
 // GET leaderboard
@@ -77,8 +78,11 @@ router.post("/auto", async (req, res) => {
       leetcodeData = await getLeetCodeData(leetcode);
     }
 
-    // Codechef scraper is not implemented yet, so its stats are 0
-    const ccStars = 0;
+    let codechefData = { rating: 0, stars: 0 };
+    if (codechef) {
+      codechefData = await getCodeChefData(codechef);
+    }
+    const ccStars = codechefData.stars;
 
     const scoreValue = calculateScore({
       leetcodeSolved: leetcodeData.totalSolved,
@@ -89,7 +93,15 @@ router.post("/auto", async (req, res) => {
       ccStars,
     });
 
-    const newScore = new Score({ userId, score: scoreValue });
+    const newScore = new Score({ 
+      userId, 
+      score: scoreValue,
+      codeforcesRating: cfData.rating,
+      leetcodeEasy: leetcodeData.easySolved,
+      leetcodeMedium: leetcodeData.mediumSolved,
+      leetcodeHard: leetcodeData.hardSolved,
+      codechefRating: codechefData.rating
+    });
     await newScore.save();
 
     res.json({
