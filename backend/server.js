@@ -9,7 +9,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:3000",
-    "https://leaderboard-rho-one.vercel.app/"
+    "https://leaderboard-rho-one.vercel.app"
   ],
   credentials: true
 }));
