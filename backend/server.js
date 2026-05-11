@@ -7,8 +7,10 @@ const app = express();
 
 // Allow all origins for Vercel deployments, or specify frontend URL
 app.use(cors({
-  origin: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: [
+    "http://localhost:3000",
+    "https://leaderboard-rho-one.vercel.app/"
+  ],
   credentials: true
 }));
 

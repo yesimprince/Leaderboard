@@ -10,7 +10,7 @@ export default function LeaderboardTable({ searchQuery, yearFilter }) {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await fetch("/api/leaderboard");
+        const response = await fetch("https://leaderboard-tojd.onrender.com/api/leaderboard");
         if (!response.ok) {
           throw new Error("Failed to fetch leaderboard data");
         }

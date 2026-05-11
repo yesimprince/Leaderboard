@@ -36,7 +36,7 @@ export default function RegistrationForm() {
 
     try {
       // 1. Create the user
-      const userResponse = await fetch("/api/users/add", {
+      const userResponse = await fetch("https://leaderboard-tojd.onrender.com/api/users/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export default function RegistrationForm() {
       const userData = await userResponse.json();
 
       // 2. Add to leaderboard & auto-calculate score
-      const leaderboardResponse = await fetch("/api/leaderboard/auto", {
+      const leaderboardResponse = await fetch("https://leaderboard-tojd.onrender.com/api/leaderboard/auto", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
