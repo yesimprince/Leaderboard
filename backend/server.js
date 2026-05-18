@@ -1,6 +1,6 @@
 const cors = require('cors');
 const express = require("express");
-require("dotenv").config();
+require("dotenv").config({ path: require('path').resolve(__dirname, '.env') });
 const connectDB = require("./config/db");
 
 const app = express();
@@ -20,10 +20,12 @@ app.use(express.json());
 // import routes
 const userRoutes = require("./routes/user");
 const leaderboardRoutes = require("./routes/leaderboard");
+const cronRoutes = require("./routes/cron");
 
 // use routes
 app.use("/api/users", userRoutes);
 app.use("/api/leaderboard", leaderboardRoutes);
+app.use("/api/cron", cronRoutes);
 
 // test route
 app.get("/", (req, res) => {

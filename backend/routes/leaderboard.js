@@ -68,7 +68,7 @@ router.post("/auto", async (req, res) => {
   try {
     const { userId, codeforces, leetcode, codechef } = req.body;
 
-    let cfData = { rating: 0 };
+    let cfData = { rating: 0, maxRating: 0 };
     if (codeforces) {
       cfData = await getCodeforcesData(codeforces);
     }
@@ -90,6 +90,8 @@ router.post("/auto", async (req, res) => {
       mediumSolved: leetcodeData.mediumSolved,
       hardSolved: leetcodeData.hardSolved,
       cfRating: cfData.rating,
+      cfMaxRating: cfData.maxRating,
+      ccRating: codechefData.rating,
       ccStars,
     });
 
@@ -97,10 +99,12 @@ router.post("/auto", async (req, res) => {
       userId, 
       score: scoreValue,
       codeforcesRating: cfData.rating,
+      cfMaxRating: cfData.maxRating,
       leetcodeEasy: leetcodeData.easySolved,
       leetcodeMedium: leetcodeData.mediumSolved,
       leetcodeHard: leetcodeData.hardSolved,
-      codechefRating: codechefData.rating
+      codechefRating: codechefData.rating,
+      ccRating: codechefData.rating
     });
     await newScore.save();
 

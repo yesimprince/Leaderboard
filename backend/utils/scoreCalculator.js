@@ -1,25 +1,31 @@
 function calculateScore(data) {
-  // Extract LeetCode difficulty stats
+  // 1. LeetCode Component
   const easy = data.easySolved || 0;
   const medium = data.mediumSolved || 0;
   const hard = data.hardSolved || 0;
-  
-  // Backward compatibility in case only leetcodeSolved is provided (manual score addition)
   const leetcode = data.leetcodeSolved || 0;
   
   let leetcodeScore = 0;
   if (easy > 0 || medium > 0 || hard > 0) {
-    // Points based on difficulty
     leetcodeScore = (easy * 1) + (medium * 3) + (hard * 5);
   } else {
-    // Fallback formula if difficulty stats are not present
     leetcodeScore = leetcode * 2;
   }
 
-  const cf = data.cfRating || 0;
-  const cc = data.ccStars || 0;
+  // 2. Codeforces Component
+  const cfRating = data.cfRating || 0;
+  const cfMaxRating = data.cfMaxRating || 0;
+  // Use both current and max rating to balance LeetCode grind
+  const cfScore = (cfRating * 0.4) + (cfMaxRating * 0.1);
 
-  const score = leetcodeScore + (cf / 10) + (cc * 50);
+  // 3. CodeChef Component
+  const ccRating = data.ccRating || 0;
+  const ccStars = data.ccStars || 0;
+  // Combine rating and stars
+  const ccScore = (ccRating * 0.4) + (ccStars * 20);
+
+  // 4. Total Calculation
+  const score = leetcodeScore + cfScore + ccScore;
   
   return Math.round(score);
 }
