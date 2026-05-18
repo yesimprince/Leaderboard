@@ -5,12 +5,18 @@ const connectDB = require("./config/db");
 
 const app = express();
 
-// Allow all origins for Vercel deployments, or specify frontend URL
 app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://leaderboard-rho-one.vercel.app"
-  ],
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      "https://leaderboard-rho-one.vercel.app"
+    ];
+    // Allow any localhost port, or exact matches in allowedOrigins
+    if (!origin || origin.startsWith("http://localhost:") || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
 
